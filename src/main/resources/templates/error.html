@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>PDF转WORD</title>
+    <link rel="icon" th:href="@{/pic/title.ico}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <script type="text/javascript" th:src="@{/js/jquery-1.12.4.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="panel panel-primary">
+    <!-- .panel-heading 面板头信息。 -->
+    <div class="panel-heading">
+        <!-- .panel-title 面板标题。 -->
+        <h3 class="panel-title">PDF转WORD</h3>
+    </div>
+</div>
+<div class="container">
+    <div class="alert alert-danger" role="alert">文件转换失败!
+        <a href="javascript:history.back(-1)">返回</a>
+    </div>
+    <div th:text="${error.message}">错误信息！</div>
+
+</div>
+
+</body>
+</html>

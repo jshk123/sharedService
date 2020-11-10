@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>PDF转WORD</title>
+    <link rel="icon" th:href="@{/pic/title.ico}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
+
+    <script type="text/javascript" th:src="@{/js/jquery-1.12.4.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <style>
+        .loading {
+            width: 160px;
+            height: 56px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            line-height: 56px;
+            color: #fff;
+            padding-left: 60px;
+            font-size: 15px;
+            background: #000 url(/pic/loading.gif) no-repeat 10px 50%;
+            opacity: 0.7;
+            z-index: 9999;
+            -moz-border-radius: 20px;
+            -webkit-border-radius: 20px;
+            border-radius: 20px;
+            filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+        }
+    </style>
+    <script type="text/javascript">
+
+        function HtmlLoad() {
+            var fileInput = $('#file').get(0).files[0];
+            if (fileInput) {
+                $('#myModal').modal('show');
+
+                setTimeout(function () {
+                    $('#myModal').modal('hide');
+                }, 3000);
+
+                $("#submitbtn").html("&nbsp;请稍等...");
+
+            }
+
+        };
+
+        function fileChange(target) {
+            var fileSize = 0;
+            if (!target.files) {
+                var filePath = target.value;
+                var fileSystem = new ActiveXObject("Scripting.FileSystemObject");
+                var file = fileSystem.GetFile(filePath);
+                fileSize = file.Size;
+            } else {
+                fileSize = target.files[0].size;
+            }
+            var size = fileSize / 1024;
+            if (size > 2000) {
+                $('#bigSize').modal('show');
+
+                setTimeout(function () {
+                    $('#bigSize').modal('hide');
+                }, 2000);
+                target.value = "";
+                return;
+            }
+        };
+
+
+    </script>
+</head>
+<body>
+<div class="panel panel-primary">
+    <!-- .panel-heading 面板头信息。 -->
+    <div class="panel-heading">
+        <!-- .panel-title 面板标题。 -->
+        <h3 class="panel-title">PDF转WORD</h3>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <form class="form-horizontal" action="/gj/pdf2word" enctype="multipart/form-data" method="post">
+                <div class="form-group">
+                    <div class="input-group col-md-4">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <input class="form-control" placeholder="文件描述" type="text" name="description"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group col-md-4">
+                        请上传小于2M的PDF格式文件：
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group col-md-4">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                        <input id="file" class="form-control" placeholder="请选择文件" type="file" name="headPortrait"
+                               onchange="fileChange(this)" required="required"/>
+                    </div>
+                </div>
+                <div class=" form-group">
+                    <div class="col-md-4">
+                        <div class="btn-group btn-group-justified">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-success" id="submitbtn"
+                                        onclick="HtmlLoad()">
+                                    <span class="glyphicon glyphicon-share"></span>&nbsp;文件转换
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="myModal" class="modal fade" data-keyboard="false"
+                     data-backdrop="static" data-role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="false">
+                    <div id="loading" class="loading">加载中...</div>
+                </div>
+                <div id="bigSize" class="modal fade" data-keyboard="false"
+                     data-backdrop="static" data-role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="false">
+                    <div id="loading2" class="loading">不能大于2M</div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
