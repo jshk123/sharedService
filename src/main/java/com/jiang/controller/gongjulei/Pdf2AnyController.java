@@ -59,8 +59,8 @@ public class Pdf2AnyController {
                 return "error";
             }
             long size = pdf2AnyDTO.getHeadPortrait().getSize();
-            if (size >= 1024 * 1024 * 2) {
-                BaseVO error = BaseVO.error("文件大于2M了!");
+            if (size >= 1024 * 1024 * 1) {
+                BaseVO error = BaseVO.error("文件大于1M了!");
                 model.addAttribute("error", error);
                 return "error";
             }

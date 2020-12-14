@@ -43,7 +43,7 @@
                     $('#myModal').modal('hide');
                 }, 3000);
 
-                $("#submitbtn").html("&nbsp;请稍等...");
+                $("#submitbtn").html("&nbsp;勿点.请稍等.");
 
             }
 
@@ -60,7 +60,7 @@
                 fileSize = target.files[0].size;
             }
             var size = fileSize / 1024;
-            if (size > 2000) {
+            if (size > 1000) {
                 $('#bigSize').modal('show');
 
                 setTimeout(function () {
@@ -124,15 +124,21 @@
                 <div id="bigSize" class="modal fade" data-keyboard="false"
                      data-backdrop="static" data-role="dialog"
                      aria-labelledby="myModalLabel" aria-hidden="false">
-                    <div id="loading2" class="loading">不能大于2M</div>
+                    <div id="loading2" class="loading">不能大于1M</div>
                 </div>
             </form>
 
         </div>
     </div>
 
+
+    <!-- Start of shorte.st banner code -->
+    <a href="http://join-shortest.com/ref/a58804e65f"><img
+            src="//static.shorte.st/bundles/smeuser/img/referral_banners/300x250.png?2020-02-19.0"
+            title="Earn money on short links" width="300" height="250"/>
+        <div>↑↑↑点击短链接赚钱↑↑↑</div>
+    </a>
+    <!-- End of shorte.st banner code -->
 </div>
-
-
 </body>
 </html>
