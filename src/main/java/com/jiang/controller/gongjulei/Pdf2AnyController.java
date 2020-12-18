@@ -36,7 +36,7 @@ public class Pdf2AnyController {
 
     @RequestMapping("/")
     public String index() {
-        return "index";
+        return "gj";
     }
 
     @RequestMapping("/gj")
